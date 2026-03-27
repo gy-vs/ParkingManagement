@@ -127,7 +127,7 @@ public:
 
         int duration = targetCar.getParkingDuration(departureTime);
         int fee = targetCar.calculateParkingFee(departureTime, ratePerUnit);
-        totalRevenue = fee;
+        totalRevenue += fee;
 
         std::cout << "[离开] 车牌号 " << licensePlate 
                   << " 在时刻 " << departureTime << " 离开" << std::endl;
@@ -138,6 +138,7 @@ public:
             Car waitingCar = waitingQueue.dequeue();
             int position = parkingStack.size() + 1;
             waitingCar.setPosition(position);
+            waitingCar.setArrivalTime(departureTime);
             parkingStack.push(waitingCar);
             std::cout << "[进场] 车牌号 " << waitingCar.getLicensePlate() 
                       << " 从便道进入停车场位置 " << position << std::endl;
