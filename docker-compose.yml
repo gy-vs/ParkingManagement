@@ -1,0 +1,16 @@
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: parking-lot-backend
+    stdin_open: true
+    tty: true
+    ports:
+      - "8081:8081"
+    networks:
+      - parking-lot-network
+
+networks:
+  parking-lot-network:
+    driver: bridge
